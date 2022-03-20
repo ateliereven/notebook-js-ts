@@ -4,8 +4,7 @@ import { fetchPlugin } from './plugins/fetch-plugin';
 
 let service: esbuild.Service;
 
-
-const bundle =  async (rawCode: string) => {
+const bundle = async (rawCode: string) => {
   // initializing web assembly bundle (transpiles esbuild code that's written in Go to run on the browser):
   // if service is not defined assign this variable with esbuild.startService:
   if (!service) {
@@ -22,21 +21,30 @@ const bundle =  async (rawCode: string) => {
       loader: 'jsx',
       target: 'es2015'
     });*/
-   
-  //to transpile and build input code (jsx) into plain JavaScript (es2015), and handle package imports:
-  const result = await service.build({
-    entryPoints: ['index.js'],
-    bundle: true,
-    write: false,
-    plugins: [unpkgPathPlugin(), fetchPlugin(rawCode)], //passing input value to the plugin to transpile the input
-    define: {
-      'process.env.NODE_ENV': '"production"', //important that production will be a string
-      global: 'window', // necessary for bundling inside the browser
-    },
-  });
 
-  // returning the result transpiled code:
-  return result.outputFiles[0].text;
+  //to transpile and build input code (jsx) into plain JavaScript (es2015), and handle package imports:
+  try {
+    const result = await service.build({
+      entryPoints: ['index.js'],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin(), fetchPlugin(rawCode)], //passing input value to the plugin to transpile the input
+      define: {
+        'process.env.NODE_ENV': '"production"', //important that production will be a string
+        global: 'window', // necessary for bundling inside the browser
+      },
+    });
+    // returning the result transpiled code:
+    return {
+      code: result.outputFiles[0].text,
+      err: '',
+    };
+  } catch (err: any) {
+    return {
+      code: '',
+      err: err.message,
+    };
+  }
 };
 
 export default bundle;
