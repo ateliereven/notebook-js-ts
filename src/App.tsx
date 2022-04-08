@@ -1,14 +1,12 @@
-import CodeCell from "./components/CodeCell";
-import TextEditor from "./components/TextEditor";
+import CellList from "./components/CellList";
 
 function App() {
 
   return (
     <div>
-      <TextEditor />
-      <CodeCell />
+      <CellList />
     </div>
-  ); // pre tag is used to format the content as code lines
+  );
 }
 
 export default App;
