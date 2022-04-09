@@ -52,7 +52,7 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
          state.order[index] = state.order[targetIndex];
          state.order[targetIndex] = action.payload.id;
          return;
-      case ActionType.INSERT_CELL_BEFORE: {
+      case ActionType.INSERT_CELL_AFTER: {
          const cell: Cell = {
             content: '',
             type: action.payload.type,
@@ -60,7 +60,7 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
          };
          state.data[cell.id] = cell;
          const index = state.order.findIndex(id => id === action.payload.id);
-         index < 0 ? state.order.push(cell.id) : state.order.splice(index, 0, cell.id);
+         index < 0 ? state.order.unshift(cell.id) : state.order.splice(index+1, 0, cell.id);
          return;
       }
       default:
