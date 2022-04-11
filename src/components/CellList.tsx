@@ -1,3 +1,4 @@
+import './CellList.css';
 import { useTypedSelector } from "../hooks/use-typed-selector";
 import CellListItem from "./CellListItem";
 import AddCell from "./AddCell";
@@ -15,7 +16,7 @@ const CellList: React.FC = () => {
          </React.Fragment>
    )
    
-   return <div>
+   return <div className='cell-list'>
       <AddCell prevCellId={null} forceVisible={cells.length === 0}/*if this condition is true apply force-visible style*/ />
       {renderedCells}
    </div>

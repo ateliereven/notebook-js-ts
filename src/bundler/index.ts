@@ -33,6 +33,9 @@ const bundle = async (rawCode: string) => {
         'process.env.NODE_ENV': '"production"', //important that production will be a string
         global: 'window', // necessary for bundling inside the browser
       },
+      // for displaying jsx in preview window using show function (defined in CodeCell.tsx):
+      jsxFactory: '_React.createElement', 
+      jsxFragment: '_React.Fragment'
     });
     // returning the result transpiled code:
     return {
