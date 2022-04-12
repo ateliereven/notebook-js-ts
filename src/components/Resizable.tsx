@@ -1,4 +1,4 @@
-import './Resizable.css';
+import '../scss/Resizable.scss';
 import { ResizableBox, ResizableBoxProps } from "react-resizable";
 import { useEffect, useState } from 'react';
 
@@ -18,27 +18,28 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
       const listener = () => {
          if (timer) {
             clearTimeout(timer);
-            }
+         }
          timer = setTimeout(() => {
-           setInnerHeight(window.innerHeight);
-           setInnerWidth(window.innerWidth);
-           // to fix issue when user shrinks window and minConstraints are overwritten by our width state:
-           if (window.innerWidth * 0.75 < width)
-             setWidth(window.innerWidth * 0.75);
+            setInnerHeight(window.innerHeight);
+            setInnerWidth(window.innerWidth);
+            // to fix issue when user shrinks window and minConstraints are overwritten by width state:
+            if (window.innerWidth * 0.75 < width)
+               setWidth(window.innerWidth * 0.75);
          }, 100);
       };
       window.addEventListener('resize', listener);
       return () => window.removeEventListener('resize', listener);
-   }, [width])
+   }, [width]);
+
    if (direction === 'horizontal') {
       resizableProps = {
          className: 'resize-horizontal',
         height: Infinity, //take up as much vertical space as possible
         width: width, //horizontal width of 75% of the browser window width
         resizeHandles: ['e'], // e is for east (right)
-        maxConstraints: [innerWidth * 0.75, Infinity],
+        maxConstraints: [innerWidth * 0.85, Infinity],
          minConstraints: [innerWidth * 0.2, Infinity],
-        onResizeStop: (event, data) => {setWidth(data.size.width)} // a callback function to update the withd state of the ResizableBox child component)
+        onResizeStop: (event, data) => {setWidth(data.size.width)} // a callback function to update the width state of the ResizableBox child component)
       };
    } else {
       resizableProps = {

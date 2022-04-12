@@ -1,4 +1,4 @@
-import './CellListItem.css';
+import '../scss/CellListItem.scss';
 import { AnimateSharedLayout, motion } from 'framer-motion';
 import { Cell } from '../state';
 import CodeCell from './CodeCell';
@@ -15,6 +15,7 @@ const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
       <AnimateSharedLayout>
          <motion.div
             layout
+            className='card'
          >
       <div className='action-bar-wrapper'><ActionBar id={cell.id} /></div>
             <CodeCell cell={cell} />

@@ -1,4 +1,4 @@
-import './AddCell.css';
+import '../scss/AddCell.scss';
 import { useActions } from '../hooks/use-actions';
 import TextButton from './TextButton';
 

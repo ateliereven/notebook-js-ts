@@ -1,7 +1,9 @@
+@import 'config';
+
 .progress-wrapper {
    height: 100%;
    flex-grow: 1;
-   background-color: white;
+   background-color: $bg-color;
 }
 
 .progress-cover {
@@ -11,17 +13,19 @@
    align-items: center;
    padding-left: 10%;
    padding-right: 10%;
-   animation: fadeIn 0.5s;
+   @include animation(fadeIn, 0s, 0.5s,);
 }
 
-@keyframes fadeIn {
+@include keyframe(fadeIn) {
    0% {
       opacity: 0;
    }
+   
    50% {
       opacity: 0;
    }
+   
    100% {
       opacity: 1;
    }
-}
+};

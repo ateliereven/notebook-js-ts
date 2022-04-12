@@ -1,0 +1,19 @@
+@import 'config';
+
+.cell-list-item {
+   position: relative;
+}
+
+.action-bar-wrapper {
+   height: 32px;
+   width: 100%;
+   background-color: $primary-color;
+
+}
+
+/*overwriting bulma's default card css*/
+.card {
+   outline: 1px $secondary-color solid;
+   outline-offset: -1px;
+   box-shadow: 3px 3px 5px 1px darken($primary-color, 15%);
+}

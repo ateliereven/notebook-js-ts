@@ -1,4 +1,4 @@
-import './CellList.css';
+import '../scss/CellList.scss';
 import { useTypedSelector } from "../hooks/use-typed-selector";
 import CellListItem from "./CellListItem";
 import AddCell from "./AddCell";

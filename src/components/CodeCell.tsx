@@ -1,5 +1,5 @@
-import './CodeCell.css';
-import { useEffect } from 'react';
+import '../scss/CodeCell.scss';
+import React, { useEffect } from 'react';
 
 import CodeEditor from './CodeEditor';
 import Preview from './Preview';
@@ -39,7 +39,7 @@ const CodeCell: React.FC<CodeCellProps> = ({cell}) => {
 
   return (
     <Resizable direction="vertical">
-      <div style={{ height: 'calc(100% - 10px)', display: 'flex', flexDirection: 'row' }}>
+      <div style={{ height: 'calc(100% - 13px)', display: 'flex', flexDirection: 'row' }}>
         <Resizable direction="horizontal">
           <CodeEditor
             initialValue={cell.content}
@@ -57,7 +57,7 @@ const CodeCell: React.FC<CodeCellProps> = ({cell}) => {
           }
         </div>
       </div>
-    </Resizable>
+      </Resizable>
   ); // pre tag is used to format the content as code lines
 }
 

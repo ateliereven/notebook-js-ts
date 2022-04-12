@@ -6,7 +6,7 @@ interface TextButtonProps {
 
 const TextButton: React.FC<TextButtonProps> = ({ icon, text, onClick }) => {
    return <button
-      className="button is-primary is-rounded is-small"
+      className="button is-danger is-rounded is-small"
       onClick={onClick}
    >
       <span className="icon is small">

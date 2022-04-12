@@ -1,4 +1,4 @@
-import './ActionBar.css'
+import '../scss/ActionBar.scss'
 import { useActions } from '../hooks/use-actions';
 import IconButton from './IconButton';
 

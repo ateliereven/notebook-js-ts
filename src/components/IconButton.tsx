@@ -5,7 +5,7 @@ interface IconButtonProps {
 
 const IconButton: React.FC<IconButtonProps> = ({ icon, onClick }) => {
    return <button
-      className="button is-primary is-small"
+      className="button is-outlined is-danger is-small"
       onClick={onClick}
    >
       <span className="icon">

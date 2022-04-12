@@ -1,5 +1,5 @@
-import './CodeEditor.css';
-import './syntax.css';
+import '../scss/CodeEditor.scss';
+import '../scss/syntax.scss';
 import { useRef } from 'react';
 import MonacoEditor, {
   EditorDidMount /*a type definition file*/,
@@ -60,7 +60,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
   return (
     <div className="editor-wrapper">
       <button
-        className="button button-format is-primary is-small"
+        className="button button-format is-danger is-rounded is-small is-hovered"
         onClick={onFormatClick}
       >
         Format

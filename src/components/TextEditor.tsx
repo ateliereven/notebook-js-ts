@@ -1,4 +1,4 @@
-import './TextEditor.css';
+import '../scss/TextEditor.scss';
 import { useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
 
@@ -31,7 +31,7 @@ return () => {
 }, []);
 // if editing return the text editor component:
     if (editing) {
-        return <div className='text-editor' ref={ref}>
+        return <div className='text-editor card' ref={ref}>
             <MDEditor value={cell.content} onChange={(v) => updateCell(cell.id, v || '')/*if v is undefined default it to be a string*/} />
         </div>
     }
