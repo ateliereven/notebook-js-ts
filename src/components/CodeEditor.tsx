@@ -6,10 +6,10 @@ import MonacoEditor, {
 } from '@monaco-editor/react';
 import prettier from 'prettier';
 import parser from 'prettier/parser-babel'; //to parse javascript code
-// following packages are for syntax highlighting - will only work if downgrade react-scripts to 4.0.3, and then resolve to the right MonicoEditor version:
-// import Highlighter from 'monaco-jsx-highlighter';
-// import {parse} from '@babel/parser';
-// import traverse from '@babel/traverse';
+// following packages are for syntax highlighting - will only work if downgrade react-scripts to 4.0.3, and then resolve to the right MonicoEditor version, and/or upgrade monaco-jsx-highlighter to v 1 or higher :
+//  import Highlighter from 'monaco-jsx-highlighter';
+//  import {parse} from '@babel/parser';
+//  import traverse from '@babel/traverse';
 
 interface CodeEditorProps {
   initialValue: string;
@@ -29,15 +29,16 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 }); // change tab size to 2 spaces
 
     //highlight jsx syntax on editor:
-    // const highlighter = new Highlighter(
-    //   //@ts-ignore
-    //   window.monaco,
-    //   parse,
-    //   traverse,
-    //   monacoEditor
-    // );
-    // highlighter.highLightOnDidChangeModelContent(100); //whenever the content of the editor changes apply syntax highlighting to it
-  };
+  //   const highlighter = new Highlighter(
+  //     //@ts-ignore
+  //     window.monaco,
+  //     parse,
+  //     traverse,
+  //     monacoEditor
+  //   );
+  //   highlighter.highLightOnDidChangeModelContent(100, () => { }, () => { }, undefined, () => { }); //whenever the content of the editor changes apply syntax highlighting to it
+  //   highlighter.addJSXCommentCommand();
+   };
 
   const onFormatClick = () => {
     // get current value from editor:
