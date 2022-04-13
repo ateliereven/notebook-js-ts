@@ -1,0 +1,80 @@
+@import 'config';
+
+/*overwriting bulma's default title css*/
+.w-md-editor {
+    color: $secondary-color !important;
+
+  .title {
+    line-height: unset;
+    font-size: unset;
+    font-weight: unset;
+    color: unset !important ;
+  }
+  ul {
+    line-height: 1;
+  }
+    .w-md-editor-text-pre {
+      color: $secondary-color;
+    }
+}
+
+/*matching styles with resizable css*/
+.text-editor {
+  .w-md-editor-bar {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+  height: 11px;
+  cursor: row-resize;
+  background-color: $primary-color;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 100%;
+  position: relative;
+
+  svg {
+    display: none;
+  }
+  }
+  /*dark theme*/
+  em {
+    font-style: italic;
+  }
+
+  .wmde-markdown {
+    hr {
+      border-top: 1px solid #dee5ed;
+    }
+    ol {
+      list-style: decimal;
+    }
+  }
+
+  .w-md-editor-show-live {
+    /* Hide menu bar buttons to prevent accidental delete */
+    z-index: 20;
+  }
+
+  .w-md-editor-toolbar {
+    background-color: $primary-color;
+    border-bottom: 1px solid $secondary-color;
+
+    li {
+      button {
+        color: $secondary-color;
+      }
+    }
+  }
+
+  .w-md-editor-content {
+    background-color: $editor-bg-color;
+  }
+
+  .w-md-editor-text-pre .bold {
+    color: unset;
+  }
+
+  .token.list.punctuation {
+    background-color: unset;
+  }
+}
+
+  
