@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import axios from "axios";
 import { ActionType } from "../action-types";
 import {
    Action,
@@ -6,12 +7,11 @@ import {
    DeleteCellAction,
    UpdateCellAction,
    InsertCellAfterAction,
-   BundleStartAction,
-   BundleCompleteAction
 } from "../actions";
-import { CellTypes } from "../cell";
+import { Cell, CellTypes } from "../cell";
 import { Direction } from "../direction";
 import bundle from "../../bundler";
+import { RootState } from "../reducers";
 
 export const updateCell = (id: string, content: string): UpdateCellAction => {
    return {
@@ -20,7 +20,7 @@ export const updateCell = (id: string, content: string): UpdateCellAction => {
          id,
          content
       }
-   }
+   };
  };
 
 export const deleteCell = (id: string): DeleteCellAction => {
@@ -37,8 +37,8 @@ export const moveCell = (id: string, direction: Direction): MoveCellAction => {
          id,
          direction
       }
-   }
- };
+   };
+};
 
 export const insertCellAfter = (id: string | null, cellType: CellTypes): InsertCellAfterAction => {
    return {
@@ -47,7 +47,7 @@ export const insertCellAfter = (id: string | null, cellType: CellTypes): InsertC
          id,
          type: cellType
       }
-   }
+   };
 };
  
 export const createBundle = (cellId: string, input: string) => {
@@ -66,5 +66,42 @@ export const createBundle = (cellId: string, input: string) => {
             bundle: result
          },
       });
+   };
+};
+
+export const fetchCells = () => {
+   return async (dispatch: Dispatch<Action>) => {
+      dispatch({ type: ActionType.FETCH_CELLS });
+
+      try {
+         const { data } = await axios.get<Cell[]>('/cells'); // data is an array of cell objects
+         dispatch({ type: ActionType.FETCH_CELLS_COMPLETE, payload: data });
+      } catch (err) {
+         // next line is to to satisfy typescript type issues with err:
+         if (err instanceof Error) {
+            dispatch({ type: ActionType.FETCH_CELLS_ERROR, payload: err.message });
+         }
+      }
+   };
+};
+
+export const saveCells = () => {
+   return async (dispatch: Dispatch<Action>, getState: () => RootState) => {
+      const {
+         cells: { data, order }
+      } = getState();
+      const cells = order.map(id => data[id]);
+      try {
+         await axios.post('/cells', { cells });
+      } catch (err) {
+         // next line is to to satisfy typescript type issues with err:
+         if (err instanceof Error) {
+            dispatch({
+               type: ActionType.SAVE_CELLS_ERROR,
+               payload: err.message
+            });
+         }
+      }
+      
    };
 };

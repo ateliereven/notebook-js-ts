@@ -1,14 +1,15 @@
 import produce from 'immer';
-import reducers from '.';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
 interface BundlesState {
-   [key: string]: {
-      loading: boolean;
-      code: string;
-      err: string;
-   } | undefined; // when the app is fist booting up the bundles state is undefined, there is not yet a bundle for a particulat cell
+   [key: string]:
+      | {
+         loading: boolean;
+         code: string;
+         err: string;
+         }
+      | undefined; // when the app is fist booting up the bundles state is undefined, there is not yet a bundle for a particular cell
 }
 
 // initial state defaulted to be a empty object:

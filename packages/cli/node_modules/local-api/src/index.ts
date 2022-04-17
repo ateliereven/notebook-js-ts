@@ -6,6 +6,8 @@ import { createCellsRouter } from "./routes/cells";
 export const serve = (port: number, filename: string, dir: string, useProxy: boolean): Promise<void> => {
    const app = express();
 
+   app.use(createCellsRouter(filename, dir));
+
    if (useProxy) {
       //for developer mode - serve react app via create-react-app on port 3000:
       app.use(createProxyMiddleware({
@@ -22,8 +24,6 @@ export const serve = (port: number, filename: string, dir: string, useProxy: boo
       //express.static serves up files from a local folder:
       app.use(express.static(path.dirname(packagePath))); //path.dirname returns the absolute path to the folder without the file name.
    };
-
-   app.use(createCellsRouter(filename, dir));
 
    // wrapping the express server inside a returned promise:
    return new Promise<void>((resolve, reject) => {
