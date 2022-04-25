@@ -9,14 +9,14 @@ const fileCache = localForage.createInstance({
 });
 
 // this is a plugin that works inside of esbuild:
-export const fetchPlugin = (inputCode: string) => {
+export const fetchPlugin = (inputCode: string, languageLoader: esbuild.Loader) => {
   return {
     name: 'fetch-plugin',
     setup(build: esbuild.PluginBuild) {
       //return a file to be loaded instead of index.js:
       build.onLoad({ filter: /(^index\.js$)/ }, async (args: any) => {
         return {
-          loader: 'jsx',
+          loader: languageLoader,
           contents: inputCode,
         };
       });
@@ -45,7 +45,7 @@ export const fetchPlugin = (inputCode: string) => {
               `;
         const result: esbuild.OnLoadResult = {
           // esbuild.OnLoadResult is the type of object this function returns
-          loader: 'jsx',
+          loader: languageLoader,
           contents,
           resolveDir: new URL('./', request.responseURL).pathname, //to get redirect path of the file we are trying to load
         };
@@ -59,7 +59,7 @@ export const fetchPlugin = (inputCode: string) => {
         const { data, request } = await axios.get(args.path);
         const result: esbuild.OnLoadResult = {
           // esbuild.OnLoadResult is the type of object this function returns
-          loader: 'jsx',
+          loader: languageLoader,
           contents: data,
           resolveDir: new URL('./', request.responseURL).pathname, //to get redirect path of the file we are trying to load
         };

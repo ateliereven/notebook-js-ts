@@ -1,3 +1,5 @@
+@import 'config';
+
 .editor-wrapper {
    position: relative;
    height: 100%;
@@ -5,16 +7,23 @@
 
    .button-format {
       position: absolute;
-      top: 5px;
-      right: 15px;
-      z-index: 5;
       opacity: 0;
-      transition: opacity 0.3s;
+      z-index: 5;
+      right: 15px;
+      width: 70px;
+      @include transition(opacity, 0.3s, linear);
+      
+      &:first-of-type {
+         top: 5px; 
+      }
+      &:last-of-type {
+         bottom: 5px;
+      }
    }
 
    &:hover {
       .button-format {
-      opacity: 1.0;
+      opacity: 0.8;
       }
    }
 }

@@ -1,6 +1,7 @@
 import { ActionType } from "../action-types";
 import { Cell, CellTypes } from "../cell";
 import { Direction } from "../direction";
+import { LanguageLoader } from "../language-loader";
 
 export interface MoveCellAction {
    type: ActionType.MOVE_CELL;
@@ -31,7 +32,8 @@ export interface UpdateCellAction {
 export interface BundleStartAction {
    type: ActionType.BUNDLE_START;
    payload: {
-      cellId: string
+      cellId: string,
+      language: LanguageLoader
    }
 }
 
@@ -43,6 +45,7 @@ export interface BundleCompleteAction {
          code: string;
          err: string;
       }
+      language: LanguageLoader
    }
 }
 

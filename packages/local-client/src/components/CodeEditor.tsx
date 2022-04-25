@@ -13,10 +13,11 @@ import parser from 'prettier/parser-babel'; //to parse javascript code
 
 interface CodeEditorProps {
   initialValue: string;
-  onChange(value: string): void; // a function that takes an input type of string and doesnt return anything
+  onChange(value: string): void;
+  editorLanguage: 'javascript' | 'typescript'
 }
 
-const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
+const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue, editorLanguage }) => {
   const editorRef = useRef<any>();
 
   //a function to be called when editor is first displayed on the screen:
@@ -24,7 +25,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
     editorRef.current = monacoEditor;
     // getting told if the content is being changed inside the editor in some way:
     monacoEditor.onDidChangeModelContent(() => {
-      onChange(getValue()); //getValue is a function that returns a string
+      onChange(getValue()); //getValue returns a string
     });
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 }); // change tab size to 2 spaces
 
@@ -36,10 +37,13 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
   //     traverse,
   //     monacoEditor
   //   );
-  //   highlighter.highLightOnDidChangeModelContent(100, () => { }, () => { }, undefined, () => { }); //whenever the content of the editor changes apply syntax highlighting to it
+  //   highlighter.highLightOnDidChangeModelContent(100, () => { }, () => { }, undefined, () => { });
+  //whenever the content of the editor changes apply syntax highlighting to it
   //   highlighter.addJSXCommentCommand();
    };
 
+  
+  // formatting cell content:
   const onFormatClick = () => {
     // get current value from editor:
     const unformatted = editorRef.current.getModel().getValue();
@@ -57,6 +61,11 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
     editorRef.current.setValue(formatted);
   };
 
+  // clearing cell content
+  const onClearClick = () => {
+    editorRef.current.setValue('');
+  }
+
   // customizing features of the code editor:
   return (
     <div className="editor-wrapper">
@@ -66,11 +75,17 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
       >
         Format
       </button>
+      <button
+        className="button button-format is-primary is-rounded is-small is-hovered"
+        onClick={onClearClick}
+      >
+        Clear
+      </button>
       <MonacoEditor
         editorDidMount={onEditorDidMount}
         value={initialValue}
         theme="dark"
-        language="javascript"
+        language={editorLanguage}
         height="100%"
         options={{
           wordWrap: 'on',

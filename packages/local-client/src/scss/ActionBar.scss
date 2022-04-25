@@ -1,9 +1,7 @@
 @import 'config';
 
 .action-bar {
-   position: absolute;
-   top: 0;
-   right: 0;
+   
    opacity: 0.8;
    @include transition(opacity, 0.3s, linear);
 
@@ -11,15 +9,42 @@
    opacity: 1;
    }
 
-   /*overriding bulma's button styles*/
-   .button {
-      height: 2.1em;
-      width: 20px;
-      margin: 4px 3px;
-      border-radius: 50%;
+   .actions {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      /*overriding bulma's button styles*/
+      .button {
+         height: 2.1em;
+         width: 20px;
+         margin: 4px 3px;
+         border-radius: 50%;
+      }
+      
+      .is-small {
+         font-size: 0.7em;
+      }
    }
+
+   .language-selector {
+      position: absolute;
+      top: 0;
+      left: 0;
    
-   .is-small {
-      font-size: 0.7em;
+      .button {
+         height: 32px;
+         background-color: transparent;
+      }
+
+      .dropdown-menu {
+         min-width: 8.7rem;
+
+         .dropdown-content {
+            background-color: #3a3f4480;
+         }
+      }
    }
 }
+
+

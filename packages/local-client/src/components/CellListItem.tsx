@@ -17,7 +17,7 @@ const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
             layout
             className='card'
          >
-      <div className='action-bar-wrapper'><ActionBar id={cell.id} /></div>
+      <div className='action-bar-wrapper'><ActionBar id={cell.id} type={cell.type} /></div>
             <CodeCell cell={cell} />
             </motion.div>
       </AnimateSharedLayout>
@@ -28,7 +28,7 @@ const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
             layout
          >
       <TextEditor cell={cell} />
-      <ActionBar id={cell.id} />
+      <ActionBar id={cell.id} type={cell.type} />
       </motion.div>
       </AnimateSharedLayout>
       </>

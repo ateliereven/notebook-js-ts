@@ -18,19 +18,20 @@ const CodeCell: React.FC<CodeCellProps> = ({cell}) => {
   const { updateCell, createBundle } = useActions();
   //for pulling state out of the redux store:
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
-  const cumulativeCode = useCumulativeCode(cell.id)
+  const cumulativeCode = useCumulativeCode(cell.id);
   
   // debouncing:
   useEffect(() => {
     // for the first time the component renders when the app loads - immidiately bundle:
     if (!bundle) {
-      createBundle(cell.id, cumulativeCode);
+      // defualt bundle with jsx loader:
+      createBundle(cell.id, cumulativeCode, 'jsx');
       return;
     }
     // wait untill the user stops typing for 0.75 second before bundling their code:
     const timer = setTimeout(async () => {
       // dispatching code state with the output code:
-      createBundle(cell.id, cumulativeCode)
+      createBundle(cell.id, cumulativeCode, bundle.loader)
     }, 750);
 
     //clearing effect:
@@ -44,13 +45,14 @@ const CodeCell: React.FC<CodeCellProps> = ({cell}) => {
           <CodeEditor
             initialValue={cell.content}
             onChange={(value) => updateCell(cell.id, value)}
+            editorLanguage={bundle?.loader === 'tsx' ? 'typescript' : 'javascript'}
           />
         </Resizable>
         <div className='progress-wrapper'>
           {!bundle || bundle.loading
             ? (
                 <div className='progress-cover'>
-                  <progress className='progress is-small is-primary' max='100'>Loading</progress>
+                  <progress className='progress is-small is-danger' max='100'>Loading</progress>
                 </div>
                 )
             : <Preview code={bundle.code} err={bundle.err}/>    
@@ -58,7 +60,7 @@ const CodeCell: React.FC<CodeCellProps> = ({cell}) => {
         </div>
       </div>
       </Resizable>
-  ); // pre tag is used to format the content as code lines
+  );
 }
 
 export default CodeCell;

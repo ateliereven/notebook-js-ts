@@ -10,6 +10,7 @@ import {
 } from "../actions";
 import { Cell, CellTypes } from "../cell";
 import { Direction } from "../direction";
+import { LanguageLoader } from "../language-loader";
 import bundle from "../../bundler";
 import { RootState } from "../reducers";
 
@@ -45,25 +46,27 @@ export const insertCellAfter = (id: string | null, cellType: CellTypes): InsertC
       type: ActionType.INSERT_CELL_AFTER,
       payload: {
          id,
-         type: cellType
+         type: cellType,
       }
    };
 };
  
-export const createBundle = (cellId: string, input: string) => {
+export const createBundle = (cellId: string, input: string, language: LanguageLoader) => {
    return async (dispatch: Dispatch<Action>) => {
       dispatch({
          type: ActionType.BUNDLE_START,
          payload: {
-            cellId
+            cellId,
+            language
          },
       });
-      const result = await bundle(input);
+      const result = await bundle(input, language);
       dispatch({
          type: ActionType.BUNDLE_COMPLETE,
          payload: {
             cellId,
-            bundle: result
+            bundle: result,
+            language
          },
       });
    };

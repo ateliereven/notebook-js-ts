@@ -4,7 +4,7 @@ import { fetchPlugin } from './plugins/fetch-plugin';
 
 let service: esbuild.Service;
 
-const bundle = async (rawCode: string) => {
+const bundle = async (rawCode: string, languageLoader: esbuild.Loader) => {
   // initializing web assembly bundle (transpiles esbuild code that's written in Go to run on the browser):
   // if service is not defined assign this variable with esbuild.startService:
   if (!service) {
@@ -28,7 +28,7 @@ const bundle = async (rawCode: string) => {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin(), fetchPlugin(rawCode)], //passing input value to the plugin to transpile the input
+      plugins: [unpkgPathPlugin(), fetchPlugin(rawCode, languageLoader)], //passing input value to the plugin to transpile the input
       define: {
         'process.env.NODE_ENV': '"production"', //important that production will be a string
         global: 'window', // necessary for bundling inside the browser

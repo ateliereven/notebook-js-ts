@@ -43,7 +43,7 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
       };
    } else {
       resizableProps = {
-         height: 300,
+      height: 250,
       width: Infinity, //take up as much horizontal space as possible
       resizeHandles: ['s'], // s is for south (bottom)
       maxConstraints: [Infinity, innerHeight * 0.9], //max vertical height of 90% of the browser window height
