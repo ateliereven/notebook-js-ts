@@ -32,9 +32,10 @@ or:
 
 - Two types of cells are available for your use - text cells and code cells.
 - Click inside a text cell to edit it via markdown syntax.
-- Code cells accept code written in js/ts/jsx/tsx. Switch between JS and TS by selecting language on the top left corner (JS is defualt). 
+- Code cells accept code written in js/ts/jsx/tsx. Switch between JS and TS by selecting language on the top left corner (JS is defualt).
 - Use the built-in show() function to view the code output in the preview pane.
-- You may import libraries and execute React.js components
-- Comulutive bundling is enabled between code cells.
+- You may import libraries and execute React.js components.
+- Each code cell has the option to auto-format or clear cell.
+- Comulutive bundling is enabled between successive code cells.
 - Re-order or delete cells using the buttons on the top right.
-- Add new cells by clicking the +code / +cell buttons.
+- Add new cells by clicking the +code / +text buttons.

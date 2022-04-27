@@ -20,7 +20,7 @@ export const serve = (port: number, filename: string, dir: string, useProxy: boo
    } else {
       //serving up the application when installed on the user's local machine:
       //create absolute path for local-client folder inside node-modules:
-      const packagePath = require.resolve('local-client/build/index.html');
+      const packagePath = require.resolve('@notebook-js-ts/local-client/build/index.html');
       //express.static serves up files from a local folder:
       app.use(express.static(path.dirname(packagePath))); //path.dirname returns the absolute path to the folder without the file name.
    };

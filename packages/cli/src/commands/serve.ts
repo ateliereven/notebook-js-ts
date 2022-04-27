@@ -1,6 +1,6 @@
 import path from "path";
 import { Command } from "commander";
-import { serve } from 'local-api';
+import { serve } from '@notebook-js-ts/local-api';
 
 interface IErrType {
   code: string;
