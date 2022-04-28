@@ -30,6 +30,8 @@ Serving file on a specific port (4045 is the default):
 or:
 ### `notebook-js-ts serve -p <port-number>`
 
+#
+
 ## Using Notebook JS/TS:
 
 - Two types of cells are available for your use - text cells and code cells.
@@ -37,7 +39,7 @@ or:
 - Code cells accept code written in js/ts/jsx/tsx. Switch between JS and TS by selecting language on the top left corner (JS is defualt).
 - Use the built-in show() function to view the code output in the preview pane.
 - You may import libraries and execute React.js components.
-- Each code cell has the option to auto-format or clear cell.
+- Each code cell has the option to auto-format or clear cell content.
 - Comulutive bundling is enabled between successive code cells.
 - Re-order or delete cells using the buttons on the top right.
 - Add new cells by clicking the +code / +text buttons.
