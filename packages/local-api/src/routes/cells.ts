@@ -1,6 +1,7 @@
 import express from 'express';
 import fs from 'fs/promises'; // module for saving or loading files off the hard drive
 import path from 'path';
+import { defaultCells } from '../defaultCells';
 
 interface Cell {
    id: string;
@@ -32,9 +33,9 @@ export const createCellsRouter = (filename: string, dirname: string) => {
          if (hasErrCode(err)) {
             // If read throws an error, inspect error. if the file doesn't exist, add code to create file and add default list of cells:
             if (err.code === 'ENOENT') {
-               await fs.writeFile(fullPath, '[]', 'utf-8'); // an empty array means we have no cells in the list
+               await fs.writeFile(fullPath, `${defaultCells}`, 'utf-8'); // an empty array means we have no cells in the list
                // send list of cells back to browser:
-               res.send([]);
+               res.send(defaultCells);
             } else {
                throw err;
             }
