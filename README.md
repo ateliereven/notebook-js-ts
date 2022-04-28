@@ -4,7 +4,7 @@ An NPM multi-package project that holds an interactive coding environment for Ja
 
 ### [Download](https://www.npmjs.com/package/notebook-js-ts/) from the npm registry
 
-![Alt text](README-img.png?raw=true "Notebook sample")
+![Alt text](readme-img.png?raw=true "Notebook sample")
 
 ## Available CLI Commands:
 
