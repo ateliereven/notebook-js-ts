@@ -1,6 +1,6 @@
 {
   "name": "notebook-js-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "bin": "dist/index.js",
   "publishConfig": {
@@ -20,7 +20,7 @@
     "@notebook-js-ts/local-client": "^1.0.0"
   },
   "devDependencies": {
-    "@notebook-js-ts/local-api": "^1.0.0",
+    "@notebook-js-ts/local-api": "^1.0.1",
     "@types/node": "^17.0.23",
     "commander": "^9.1.0",
     "esbuild": "0.8.26",
