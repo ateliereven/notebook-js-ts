@@ -59,6 +59,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ id, type, content }) => {
       </div>}
       <div className='actions'>
          <IconButton onClick={() => duplicateCell(id, type, content)} icon='fas fa-clone' tooltipText="Duplicate" />
+         <IconButton onClick={() => {navigator.clipboard.writeText(content)}} icon='fas fa-clipboard' tooltipText="Copy content" />
          <IconButton onClick={() => moveCell(id, 'up')} icon='fas fa-arrow-up' tooltipText="Up" />
          <IconButton onClick={() => moveCell(id, 'down')} icon='fas fa-arrow-down' tooltipText="Down" />
          <IconButton onClick={() => deleteCell(id)} icon='fas fa-times' tooltipText="Delete" />
