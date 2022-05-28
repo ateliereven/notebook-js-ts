@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './state';
 import 'bulmaswatch/slate/bulmaswatch.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css';
 import App from './App';
 
 

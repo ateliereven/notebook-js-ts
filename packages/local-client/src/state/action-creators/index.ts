@@ -41,15 +41,27 @@ export const moveCell = (id: string, direction: Direction): MoveCellAction => {
    };
 };
 
-export const insertCellAfter = (id: string | null, cellType: CellTypes): InsertCellAfterAction => {
+export const insertCellAfter = (id: string | null, cellType: CellTypes, cellContent: string = ''): InsertCellAfterAction => {
+   return {
+      type: ActionType.INSERT_CELL_AFTER,
+      payload: {
+         id,
+         type: cellType
+      }
+   };
+};
+
+//duplicateCell is the same as insertCellAfter, only it receives the duplicated cell's content as an argumenent
+export const duplicateCell = (id: string | null, cellType: CellTypes, cellContent: string): InsertCellAfterAction => {
    return {
       type: ActionType.INSERT_CELL_AFTER,
       payload: {
          id,
          type: cellType,
+         content: cellContent
       }
    };
-};
+}
  
 export const createBundle = (cellId: string, input: string, language: LanguageLoader) => {
    return async (dispatch: Dispatch<Action>) => {

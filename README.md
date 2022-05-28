@@ -1,6 +1,6 @@
 # Notebook JS/TS
 
-An NPM multi-package project that holds an interactive coding environment for JavaScript (and Typescript), resembling Jupyter Notebook. Written in Typescript, using React.js and Redux on the client side, and Node.js and express on the server side. The app allows the user to create code or text snippets, execute code and view the output in a preview window. Code transpiling+bundling is performed directly in the browser using Web Assembly, via ESBuild, and all changes are saved to a local file. Package management and deployment is handled with Lerna CLI.
+An NPM multi-package project that holds an interactive coding environment for JavaScript (and Typescript), resembling Jupyter Notebook. Written in Typescript, using React.js and Redux on the client-side, and Node.js and express on the server-side. The app allows the user to create code or text snippets, execute code and view the output in a preview window. Code transpiling+bundling is performed directly in the browser using ESBuild, via Web Assembly, and all changes are saved to a local file. Package management and deployment are handled with Lerna CLI.
 
 ### [Download](https://www.npmjs.com/package/notebook-js-ts/) from the npm registry
 
@@ -41,7 +41,7 @@ or:
 - You may import libraries and execute React.js components.
 - Each code cell has the option to auto-format or clear cell content.
 - Comulutive bundling is enabled between successive code cells.
-- Re-order or delete cells using the buttons on the top right.
+- Re-order, duplicate or delete cells using the buttons on the top right.
 - Add new cells by clicking the +code / +text buttons.
 
 

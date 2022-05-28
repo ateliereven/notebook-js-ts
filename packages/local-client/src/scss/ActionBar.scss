@@ -25,6 +25,16 @@
       .is-small {
          font-size: 0.7em;
       }
+
+      /*overriding bulma's tooltip styles*/
+      [data-tooltip]:not(.is-disabled):before,
+      [data-tooltip]:not(.is-loading):before,
+      [data-tooltip]:not([disabled]):before {
+               padding: .3rem;
+               line-height: 1;
+               border-radius: 3px;
+               margin-top: -7px;
+            }
    }
 
    .language-selector {
@@ -46,5 +56,7 @@
       }
    }
 }
+
+
 
 

@@ -33,7 +33,7 @@ export const createCellsRouter = (filename: string, dirname: string) => {
          if (hasErrCode(err)) {
             // If read throws an error, inspect error. if the file doesn't exist, add code to create file and add default list of cells:
             if (err.code === 'ENOENT') {
-               await fs.writeFile(fullPath, `${defaultCells}`, 'utf-8'); // an empty array means we have no cells in the list
+               await fs.writeFile(fullPath, `${defaultCells}`, 'utf-8'); 
                // send list of cells back to browser:
                res.send(defaultCells);
             } else {
