@@ -41,7 +41,7 @@ or:
 - You may import libraries and execute React.js components.
 - Each code cell has the option to auto-format or clear cell content.
 - Comulutive bundling is enabled between successive code cells.
-- Re-order, duplicate or delete cells using the buttons on the top right.
+- Re-order, duplicate, copy content or delete cells using the buttons on the top right.
 - Add new cells by clicking the +code / +text buttons.
 
 
